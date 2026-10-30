@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MY HERO 9 | ライブ・ア・ヒーロー！</title>
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#07172c;
+  --panel:#0d2947;
+  --line:#28648a;
+  --cyan:#20c9ee;
+  --gold:#ffd45c;
+  --muted:#9fc0d5;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  min-height:100vh;
+  background:radial-gradient(ellipse at 50% -10%,#1b5b85 0,#0a2541 40%,var(--bg) 78%);
+  color:#eff8ff;
+  font-family:system-ui,"Noto Sans JP",sans-serif;
+}
+header{
+  text-align:center;
+  padding:30px 16px 20px;
+  border-bottom:2px solid var(--cyan);
+  background:linear-gradient(180deg,#0d3558aa,transparent);
+}
+.kicker{
+  font-size:11px;
+  letter-spacing:.25em;
+  color:var(--cyan);
+  font-weight:800;
+}
+h1{
+  font-size:clamp(28px,5vw,48px);
+  margin:5px 0;
+  color:#fff;
+  letter-spacing:.08em;
+  text-shadow:0 3px 8px #0875a3;
+}
+header p{margin:0;color:#b6eaff}
+main{
+  max-width:1180px;
+  margin:auto;
+  padding:22px 16px;
+  display:grid;
+  grid-template-columns:minmax(290px,430px) 1fr;
+  gap:20px;
+}
+.panel{
+  background:linear-gradient(145deg,#103454,#0a223c);
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:17px;
+  box-shadow:0 12px 30px #0005;
+  min-width:0;
+}
+h2{
+  font-size:17px;
+  color:var(--gold);
+  margin:0 0 12px;
+  letter-spacing:.06em;
+}
+.counter{
+  float:right;
+  color:#fff;
+  font-variant-numeric:tabular-nums;
+}
+.board{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:7px;
+}
+.slot{
+  position:relative;
+  aspect-ratio:1;
+  border:1px dashed #4b87a9;
+  border-radius:9px;
+  background:linear-gradient(145deg,#164669,#0d2d4b);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  color:#dff8ff;
+  cursor:pointer;
+  padding:0;
+  min-width:0;
+}
+.slot.filled{border:2px solid var(--gold)}
+.slot .avatar{width:100%;height:100%;font-size:clamp(22px,4vw,38px)}
+.slot .name{
+  position:absolute;
+  bottom:0;left:0;right:0;
+  padding:5px 2px;
+  background:#061629e8;
+  color:white;
+  font-size:clamp(9px,1.2vw,12px);
+  line-height:1.35;
+  overflow-wrap:anywhere;
+}
+.avatar{
+  display:grid;
+  place-items:center;
+  background:radial-gradient(circle at 35% 25%,#3e8eb0,#123654 70%);
+  color:#dff8ff;
+  font-weight:900;
+  letter-spacing:-.04em;
+  text-shadow:0 2px 8px #001;
+  overflow:hidden;
+}
+.avatar img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:13px;
+}
+button{
+  font:inherit;
+  cursor:pointer;
+}
+.action{
+  border:0;
+  border-radius:8px;
+  padding:10px 14px;
+  background:var(--gold);
+  color:#10283b;
+  font-weight:850;
+}
+.action.alt{
+  background:#174d70;
+  color:#eaf8ff;
+  border:1px solid #287ba8;
+}
+.action:disabled{opacity:.45;cursor:not-allowed}
+.note{
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.65;
+}
+.tools{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:8px;
+}
+input,select{
+  width:100%;
+  border:1px solid #397ca2;
+  border-radius:8px;
+  background:#061a2d;
+  color:#f5fbff;
+  padding:11px 10px;
+  font:inherit;
+  min-width:0;
+}
+.filters{
+  display:flex;
+  gap:7px;
+  margin-top:8px;
+  align-items:center;
+}
+.results{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(105px,1fr));
+  gap:7px;
+  margin-top:12px;
+  max-height:590px;
+  overflow-y:auto;
+  padding-right:3px;
+}
+.character{
+  border:1px solid #2b6689;
+  border-radius:9px;
+  background:#123653;
+  color:white;
+  padding:0 0 8px;
+  overflow:hidden;
+  text-align:center;
+  min-width:0;
+}
+.character .avatar{aspect-ratio:1}
+.character span{
+  display:block;
+  font-size:12px;
+  padding:5px 3px 0;
+  overflow-wrap:anywhere;
+}
+.character.chosen{
+  border:2px solid var(--gold);
+  background:#244d69;
+}
+.character:disabled{opacity:.32;cursor:not-allowed}
+footer{
+  text-align:center;
+  color:#8eafc5;
+  padding:20px;
+  font-size:11px;
+}
+@media(max-width:780px){
+  main{grid-template-columns:1fr;padding:14px 10px}
+  .results{max-height:460px}
+  .slot .name{font-size:10px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="kicker">HERO SELECT PROJECT</div>
+  <h1>MY HERO 9</h1>
+  <p>ライブ・ア・ヒーロー！ 推しヒーロー9選</p>
+</header>
+
+<main>
+  <section class="panel">
+    <h2>SELECTED HEROES <span class="counter" id="count">0 / 9</span></h2>
+    <div class="board" id="board"></div>
+    <div class="actions">
+      <button class="action" id="save" type="button">PNG画像を保存</button>
+      <button class="action alt" id="share" type="button">Xでポスト</button>
+      <button class="action alt" id="reset" type="button">リセット</button>
+    </div>
+    <p class="note">選んだマスを押すと解除できます。PNGを保存してからXの投稿に添付してください。Xの仕様上、画像の自動添付には対応していません。</p>
+  </section>
+
+  <section class="panel">
+    <h2>HERO DATABASE</h2>
+    <div class="tools">
+      <input id="search" type="search" placeholder="ヒーロー名で検索..." aria-label="ヒーロー名で検索">
+      <select id="sort" aria-label="並び順">
+        <option value="source">図鑑順</option>
+        <option value="name">名前順</option>
+      </select>
+    </div>
+    <div class="filters"><span class="note" id="status">読み込み中...</span></div>
+    <div class="results" id="results"></div>
+    <p class="note">画像が登録されていないキャラクターは識別用の仮アイコンを表示します。</p>
+  </section>
+</main>
+
+<footer>Unofficial fan-made selector · Not affiliated with LIFEWONDERS</footer>
+
+<script>
+let characters=[],selected=[];
+const $=s=>document.querySelector(s);
+
+const initials=n=>Array.from(
+  n.replace(/^(水弾|聖夜|酔虎|祭華|清涼|貫志|跳躍|豪爽|潜行|花踊|隠密|流離|探険|解放|突貫|閃刃|波音|慈恵|哨戒|灯標|奏楽|激流|共生|追跡|彗星|覚声|星影|拳閃|聖氷|雄飛|月影|潜遊|烈水|疾走|脚光|黎明|挺身|星章|急襲|奔放|恵雨|幻想|導星|威風|炎誓|驚天|猛撃|吟遊|導刻|白波|斬浪|絢爛|疾風|檄声)/,'')
+).slice(0,2).join('');
+
+function avatar(c){
+  let d=document.createElement('div');
+  d.className='avatar';
+  if(c.image){
+    let img=document.createElement('img');
+    img.src=c.image;
+    img.alt=c.name;
+    img.loading='lazy';
+    img.onerror=()=>{d.textContent=initials(c.name)||'★'};
+    d.append(img);
+  }else{
+    d.textContent=initials(c.name)||'★';
+  }
+  return d;
+}
+
+function draw(){
+  let b=$('#board');
+  b.innerHTML='';
+  for(let i=0;i<9;i++){
+    let c=selected[i],el=document.createElement('button');
+    el.type='button';
+    el.className='slot'+(c?' filled':'');
+    if(c){
+      el.append(avatar(c));
+      let l=document.createElement('span');
+      l.className='name';
+      l.textContent=c.name;
+      el.append(l);
+      el.onclick=()=>{selected.splice(i,1);draw()};
+    }else{
+      el.innerHTML='<b style="font-size:25px">'+(i+1)+'</b><small style="position:absolute;bottom:9px">SELECT</small>';
+    }
+    b.append(el);
+  }
+  $('#count').textContent=selected.length+' / 9';
+  drawResults();
+}
+
+function drawResults(){
+  let q=$('#search').value.trim().toLocaleLowerCase();
+  let list=characters.filter(c=>c.name.toLocaleLowerCase().includes(q));
+  if($('#sort').value==='name')list.sort((a,b)=>a.name.localeCompare(b.name,'ja'));
+  let root=$('#results');
+  root.innerHTML='';
+  for(let c of list){
+    let chosen=selected.some(x=>x.id===c.id);
+    let btn=document.createElement('button');
+    btn.type='button';
+    btn.className='character'+(chosen?' chosen':'');
+    btn.disabled=!chosen&&selected.length>=9;
+    btn.append(avatar(c));
+    let s=document.createElement('span');
+    s.textContent=c.name;
+    btn.append(s);
+    btn.onclick=()=>{
+      let i=selected.findIndex(x=>x.id===c.id);
+      if(i>=0)selected.splice(i,1);
+      else if(selected.length<9)selected.push(c);
+      draw();
+    };
+    root.append(btn);
+  }
+  $('#status').textContent=`${characters.length}件中 ${list.length}件表示`;
+}
+
+['search','sort'].forEach(id=>$('#'+id).addEventListener(id==='search'?'input':'change',drawResults));
+
+$('#reset').onclick=()=>{
+  if(confirm('選択をすべて解除しますか？')){
+    selected=[];
+    draw();
+  }
+};
+
+function loadImage(src){
+  return new Promise(resolve=>{
+    if(!src)return resolve(null);
+    let img=new Image();
+    img.onload=()=>resolve(img);
+    img.onerror=()=>resolve(null);
+    img.src=src;
+  });
+}
+
+async function canvas(){
+  let c=document.createElement('canvas');
+  c.width=1200;
+  c.height=1370;
+  let x=c.getContext('2d');
+
+  let g=x.createLinearGradient(0,0,1200,1370);
+  g.addColorStop(0,'#123d5e');
+  g.addColorStop(1,'#06162b');
+  x.fillStyle=g;
+  x.fillRect(0,0,1200,1370);
+
+  x.fillStyle='#20c9ee';
+  x.fillRect(0,0,1200,12);
+
+  x.textAlign='center';
+  x.fillStyle='white';
+  x.font='bold 76px sans-serif';
+  x.fillText('MY HERO 9',600,100);
+
+  x.fillStyle='#b9eaff';
+  x.font='30px sans-serif';
+  x.fillText('ライブ・ア・ヒーロー！ 推しヒーロー9選',600,153);
+
+  for(let i=0;i<9;i++){
+    let xx=46+i%3*375;
+    let yy=205+Math.floor(i/3)*375;
+    let v=selected[i];
+
+    x.fillStyle='#123c5b';
+    x.fillRect(xx,yy,355,355);
+
+    x.strokeStyle='#ffd45c';
+    x.lineWidth=5;
+    x.strokeRect(xx,yy,355,355);
+
+    if(v){
+      let grad=x.createRadialGradient(xx+120,yy+100,10,xx+175,yy+175,240);
+      grad.addColorStop(0,'#3885a9');
+      grad.addColorStop(1,'#102b47');
+      x.fillStyle=grad;
+      x.fillRect(xx+3,yy+3,349,300);
+
+      let img=await loadImage(v.image);
+      if(img){
+        let scale=Math.max(349/img.naturalWidth,300/img.naturalHeight);
+        let w=img.naturalWidth*scale;
+        let h=img.naturalHeight*scale;
+        x.save();
+        x.beginPath();
+        x.rect(xx+3,yy+3,349,300);
+        x.clip();
+        x.drawImage(img,xx+3+(349-w)/2,yy+3+(300-h)/2,w,h);
+        x.restore();
+      }else{
+        x.fillStyle='#e8faff';
+        x.font='bold 72px sans-serif';
+        x.fillText(initials(v.name),xx+177,yy+205);
+      }
+
+      x.fillStyle='#061629';
+      x.fillRect(xx,yy+306,355,49);
+      x.fillStyle='white';
+      x.font='bold 23px sans-serif';
+      x.fillText(v.name,xx+177,yy+338,335);
+    }else{
+      x.fillStyle='#719bb7';
+      x.font='50px sans-serif';
+      x.fillText(String(i+1),xx+177,yy+190);
+    }
+  }
+
+  x.fillStyle='#8db4ca';
+  x.font='22px sans-serif';
+  x.fillText('UNOFFICIAL FAN PROJECT',600,1350);
+  return c;
+}
+
+$('#save').onclick=async()=>{
+  if(selected.length!==9){
+    alert('9人選択してからPNG画像を保存してください。');
+    return;
+  }
+  let button=$('#save');
+  button.disabled=true;
+  button.textContent='画像を作成中...';
+  try{
+    let imageCanvas=await canvas();
+    let a=document.createElement('a');
+    a.href=imageCanvas.toDataURL('image/png');
+    a.download='my-hero-9.png';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  }catch(error){
+    console.error(error);
+    alert('PNG画像を作成できませんでした。ページを再読み込みして、もう一度お試しください。');
+  }finally{
+    button.disabled=false;
+    button.textContent='PNG画像を保存';
+  }
+};
+
+$('#share').onclick=()=>{
+  let t='私の「ライブ・ア・ヒーロー！」推し9選！\n'+
+    selected.map(c=>'・'+c.name).join('\n')+
+    '\n#ライブアヒーロー #推し9選';
+  window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(t),'_blank','noopener');
+};
+
+fetch('./characters.json')
+  .then(r=>{
+    if(!r.ok)throw new Error('characters.jsonを読み込めません');
+    return r.json();
+  })
+  .then(data=>{
+    characters=data.map(c=>({...c}));
+    draw();
+  })
+  .catch(error=>{
+    console.error(error);
+    $('#status').textContent='データ読込エラー';
+  });
+</script>
+</body>
+</html>
