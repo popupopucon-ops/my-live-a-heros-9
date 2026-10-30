@@ -444,8 +444,10 @@ $('#save').onclick=async()=>{
 };
 
 $('#share').onclick=()=>{
+  let siteUrl='https://popupopucon-ops.github.io/my-live-a-heros-9/';
   let t='私の「ライブ・ア・ヒーロー！」推し9選！\n'+
     selected.map(c=>'・'+c.name).join('\n')+
+    '\n\nみんなも選んでみてね！\n'+siteUrl+
     '\n#ライブアヒーロー #推し9選';
   window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(t),'_blank','noopener');
 };
