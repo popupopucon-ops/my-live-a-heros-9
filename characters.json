@@ -320,31 +320,6 @@
     "image": "images/エクシオ.png"
   },
   {
-    "id": "lah-065",
-    "name": "火のウルフマン",
-    "image": null
-  },
-  {
-    "id": "lah-066",
-    "name": "水のウルフマン",
-    "image": null
-  },
-  {
-    "id": "lah-067",
-    "name": "木のウルフマン",
-    "image": null
-  },
-  {
-    "id": "lah-068",
-    "name": "光のウルフマン",
-    "image": null
-  },
-  {
-    "id": "lah-069",
-    "name": "影のウルフマン",
-    "image": null
-  },
-  {
     "id": "lah-070",
     "name": "ネッセン",
     "image": "images/ネッセン.png"
@@ -363,31 +338,6 @@
     "id": "lah-073",
     "name": "潜遊のヒサキ",
     "image": "images/潜遊のヒサキ.png"
-  },
-  {
-    "id": "lah-074",
-    "name": "火のガードマン",
-    "image": null
-  },
-  {
-    "id": "lah-075",
-    "name": "水のガードマン",
-    "image": null
-  },
-  {
-    "id": "lah-076",
-    "name": "木のガードマン",
-    "image": null
-  },
-  {
-    "id": "lah-077",
-    "name": "光のガードマン",
-    "image": null
-  },
-  {
-    "id": "lah-078",
-    "name": "影のガードマン",
-    "image": null
   },
   {
     "id": "lah-079",
@@ -440,31 +390,6 @@
     "image": "images/黎明のウルペクラ.png"
   },
   {
-    "id": "lah-089",
-    "name": "火のマーセナリー",
-    "image": null
-  },
-  {
-    "id": "lah-090",
-    "name": "水のマーセナリー",
-    "image": null
-  },
-  {
-    "id": "lah-091",
-    "name": "木のマーセナリー",
-    "image": null
-  },
-  {
-    "id": "lah-092",
-    "name": "光のマーセナリー",
-    "image": null
-  },
-  {
-    "id": "lah-093",
-    "name": "影のマーセナリー",
-    "image": null
-  },
-  {
     "id": "lah-094",
     "name": "ヨシオリ",
     "image": "images/ヨシオリ.png"
@@ -493,31 +418,6 @@
     "id": "lah-099",
     "name": "急襲のオキタカ",
     "image": "images/急襲のオキタカ.png"
-  },
-  {
-    "id": "lah-100",
-    "name": "火のトレイニー",
-    "image": null
-  },
-  {
-    "id": "lah-101",
-    "name": "水のトレイニー",
-    "image": null
-  },
-  {
-    "id": "lah-102",
-    "name": "木のトレイニー",
-    "image": null
-  },
-  {
-    "id": "lah-103",
-    "name": "光のトレイニー",
-    "image": null
-  },
-  {
-    "id": "lah-104",
-    "name": "影のトレイニー",
-    "image": null
   },
   {
     "id": "lah-105",
@@ -578,31 +478,6 @@
     "id": "lah-116",
     "name": "威風のガイウス",
     "image": "images/威風のガイウス.png"
-  },
-  {
-    "id": "lah-117",
-    "name": "火のダイバー",
-    "image": null
-  },
-  {
-    "id": "lah-118",
-    "name": "水のダイバー",
-    "image": null
-  },
-  {
-    "id": "lah-119",
-    "name": "木のダイバー",
-    "image": null
-  },
-  {
-    "id": "lah-120",
-    "name": "光のダイバー",
-    "image": null
-  },
-  {
-    "id": "lah-121",
-    "name": "影のダイバー",
-    "image": null
   },
   {
     "id": "lah-122",
@@ -668,31 +543,6 @@
     "id": "lah-134",
     "name": "エスペディカ",
     "image": "images/エスペディカ.png"
-  },
-  {
-    "id": "lah-135",
-    "name": "火のアンドロイド兵",
-    "image": null
-  },
-  {
-    "id": "lah-136",
-    "name": "水のアンドロイド兵",
-    "image": null
-  },
-  {
-    "id": "lah-137",
-    "name": "木のアンドロイド兵",
-    "image": null
-  },
-  {
-    "id": "lah-138",
-    "name": "光のアンドロイド兵",
-    "image": null
-  },
-  {
-    "id": "lah-139",
-    "name": "影のアンドロイド兵",
-    "image": null
   },
   {
     "id": "lah-140",
@@ -775,31 +625,6 @@
     "image": "images/斬浪のアスター.png"
   },
   {
-    "id": "lah-156",
-    "name": "火のヒールレスラー",
-    "image": null
-  },
-  {
-    "id": "lah-157",
-    "name": "水のヒールレスラー",
-    "image": null
-  },
-  {
-    "id": "lah-158",
-    "name": "木のヒールレスラー",
-    "image": null
-  },
-  {
-    "id": "lah-159",
-    "name": "光のヒールレスラー",
-    "image": null
-  },
-  {
-    "id": "lah-160",
-    "name": "影のヒールレスラー",
-    "image": null
-  },
-  {
     "id": "lah-161",
     "name": "リューセイ",
     "image": "images/リューセイ.png"
@@ -850,31 +675,6 @@
     "image": "images/疾風のステリオ.png"
   },
   {
-    "id": "lah-171",
-    "name": "火のアプレンティス",
-    "image": null
-  },
-  {
-    "id": "lah-172",
-    "name": "水のアプレンティス",
-    "image": null
-  },
-  {
-    "id": "lah-173",
-    "name": "木のアプレンティス",
-    "image": null
-  },
-  {
-    "id": "lah-174",
-    "name": "光のアプレンティス",
-    "image": null
-  },
-  {
-    "id": "lah-175",
-    "name": "影のアプレンティス",
-    "image": null
-  },
-  {
     "id": "lah-176",
     "name": "オービター",
     "image": "images/オービター.png"
@@ -903,31 +703,6 @@
     "id": "lah-181",
     "name": "センサク",
     "image": "images/センサク.JPG"
-  },
-  {
-    "id": "lah-182",
-    "name": "火のローカルアイドル",
-    "image": null
-  },
-  {
-    "id": "lah-183",
-    "name": "水のローカルアイドル",
-    "image": null
-  },
-  {
-    "id": "lah-184",
-    "name": "木のローカルアイドル",
-    "image": null
-  },
-  {
-    "id": "lah-185",
-    "name": "光のローカルアイドル",
-    "image": null
-  },
-  {
-    "id": "lah-186",
-    "name": "影のローカルアイドル",
-    "image": null
   },
   {
     "id": "lah-187",
