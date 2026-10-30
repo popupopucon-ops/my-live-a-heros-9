@@ -1,4 +1,2 @@
-MY HERO 9 v2
-index.html と characters.json を同じフォルダに置いてください。
-ローカルで動かす場合は fetch の制約により簡易HTTPサーバー経由で開くのがおすすめです。
-収録データはWikiの一覧で確認できた198ユニット名。全208件の照合と顔アイコン画像の権利確認は未完了です。
+MY LIVE・A・HEROS 9
+GitHub Pagesでは index.html と characters.json を同じ階層に配置してください。
